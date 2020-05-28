@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post" id="forms">
+        <input type="file" name="file" id="feature">
+        <input type="submit" value="点击发送">
+    </form>
+
+
+
+    <img src="" alt="" id="imagesD">
+
+</body>
+<script src='./jquery-3.5.0.js'></script>
+<script>
+    // 当管理员选择文件的时候 触发事件
+    $('#feature').on('change', function() {
+        const file = this.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+
+
+        $.ajax({
+            type: 'post',
+            url: 'http://localhost:3001/api/upload',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log(response.url)
+                $('#imagesD').attr({
+                    'src': response.url
+                });
+
+            }
+        })
+    });
+</script>
+
+</html>

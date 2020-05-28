@@ -1,5 +1,6 @@
 module.exports = app => {
     const resourceMiddelWeare = require('../../middleware/resource')
+    const multer = require('multer')
     const express = require('express')
     const router = express.Router({
         mergeParams: true
@@ -57,6 +58,18 @@ module.exports = app => {
     app.use('/api/rest/:resource', resourceMiddelWeare(), router)
 
     //=====> CRUD接口实现结束
+
+
+    //=====> 文件上传功能
+    const upload = multer({ dest: __dirname + '/../../uploads' });
+
+    // 注意到了，我们上传文件的时候不需要token验证
+    app.post('/api/upload', upload.single('file'), async(req, res) => {
+        console.log('开始发送请求');
+        const file = req.file;
+        file.url = `http://localhost:3001/uploads/${file.filename}`
+        res.send(file)
+    })
 
 
 }

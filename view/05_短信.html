@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.5.0.js"></script>
+</head>
+
+<body>
+    <form action="" method="post">
+        <label for="use">用户名:</label> <input type="text" name="username" id="use">
+        <label for="use">密码:</label><input type="text" name="password" id="password">
+        <button id="btn1">点击获取验证信息</button>
+        <input type="text" id="code">
+        <input type="submit" value="注册">
+    </form>
+</body>
+
+<script>
+    let time = 59;
+
+    let btn1 = document.getElementById('btn1');
+    btn1.onclick = function() {
+        this.disabled = true;
+        let i = time
+        btn1.innerHTML = `等待中... ${i}`
+
+        btn1.timID = setInterval(function() {
+            i--;
+            btn1.innerHTML = `等待中... ${i}`
+            if (i == 0) {
+                clearInterval(btn1.timID)
+                btn1.innerHTML = `点击发送消息`
+            }
+        }, 1000)
+        window.setTimeout(function() {
+            this.disabled = false;
+        }.bind(this), time * 1000)
+    }
+</script>
+
+</html>
