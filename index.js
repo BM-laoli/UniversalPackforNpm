@@ -16,6 +16,8 @@ app.use('/uploads', express.static(__dirname + '/uploads')) //静态路由
 require('./plugin/db')(app)
 require('./route/admin/index')(app)
 
+// 设置秘钥
+app.set('secret', '132a1s3d1a31sd3a1ds31a3sd1a31ds')
 
 app.listen(3001, () => {
     console.log('http://localhost:3001');

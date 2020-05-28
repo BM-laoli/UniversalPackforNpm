@@ -1,6 +1,69 @@
-@uti = http://localhost:3001/api/rest
+@uri =  http://localhost:3001/api/rest
+@resource = articles
+@token =Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlY2NlNTVkYTA2YzQ1N2FkYzdlYTUwZCIsImlhdCI6MTU5MDU4NDc2MX0.d81044Q6InvXrMPVEahDb4PBKgwM_859rQxGWgTPhaQ
 
-GET {{uti}}/api/test
 
-### CRUD测试
-GET {{uti}}/admin_users
+### 测试
+GET {{uri}}/test
+
+
+### 增
+POST {{uri}}/{{resource}}
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "title":"测试标题45",
+    "thumbnails":"http://www.mongoing.com/wp-content/uploads/2016/01/MongoDB-%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1%E8%BF%9B%E9%98%B6%E6%A1%88%E4%BE%8B_%E9%A1%B5%E9%9D%A2_35.png",
+    "body":"<h1>这是我们的测试内容/h1>",
+    "hot":522
+}
+
+### 删
+DELETE {{uri}}/{{resource}}/5ecf310256eaae44f4249ae4
+Authorization: {{token}}
+
+### 改,仅仅是更改一部分，
+PUT {{uri}}/{{resource}}/5ecf30898008ae4bc0c8941c
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "title":"测试标题5",
+    "body":"<h1>这是我们的测试内容/h1>",
+    "hot":522
+}
+
+
+### 查
+GET {{uri}}/{{resource}}
+Authorization:{{token}}
+
+### 指定的查
+GET {{uri}}/{{resource}}/5ecf30898008ae4bc0c8941c
+Authorization:{{token}}
+
+### 获取验证码
+GET   http://localhost:3001/api/getcode/861795660@qq.com
+
+### 模拟拿验证码进行校验
+GET http://localhost:3001/api/autucode/1432
+
+### 注册测试
+POST http://localhost:3001/api/registered
+Content-Type: application/json
+
+{
+    "username":"zs",
+    "password":"123456"
+}
+
+
+### 登录测试，注意这里需要使用token进行
+POST http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"123456"
+}
