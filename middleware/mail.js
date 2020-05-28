@@ -7,7 +7,7 @@ let transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: '861795660@qq.com', // 发送方的邮箱地址（自己的）
-        pass: 'dsumjmlrqjhdbcba' // mtp 验证码
+        pass: '000000' // mtp 验证码
     }
 });
 
