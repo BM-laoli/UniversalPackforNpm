@@ -13,7 +13,7 @@ app.use(express.json())
 app.use('/uploads', express.static(__dirname + '/uploads')) //静态路由
 
 
-
+require('./plugin/db')(app)
 require('./route/admin/index')(app)
 
 

@@ -1,0 +1,3 @@
+@uti = http://localhost:3001
+
+GET {{uti}}/api/test
