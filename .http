@@ -1,3 +1,6 @@
-@uti = http://localhost:3001
+@uti = http://localhost:3001/api/rest
 
 GET {{uti}}/api/test
+
+### CRUD测试
+GET {{uti}}/admin_users
